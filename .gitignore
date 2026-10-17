@@ -7,3 +7,27 @@ backend/*.log
 frontend/.DS_Store
 images/vehicles/*
 !images/vehicles/.gitkeep
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+**/application-local.properties
+**/application-secret.properties
+
+# Java build output
+**/target/
+
+# Logs
+*.log
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local database backups
+*.sql.gz
+*.dump
+*.bak
