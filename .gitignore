@@ -1,0 +1,9 @@
+backend/target/
+backend/.mvn/
+backend/.idea/
+backend/.vscode/
+backend/data/
+backend/*.log
+frontend/.DS_Store
+images/vehicles/*
+!images/vehicles/.gitkeep
