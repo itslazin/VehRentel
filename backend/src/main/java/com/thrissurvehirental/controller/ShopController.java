@@ -1,5 +1,5 @@
 package com.thrissurvehirental.controller;
-
+import com.thrissurvehirental.config.CloudinaryUploader;
 import com.thrissurvehirental.model.Rental;
 import com.thrissurvehirental.model.RentalShop;
 import com.thrissurvehirental.model.Vehicle;
@@ -213,6 +213,10 @@ public class ShopController {
             return ResponseEntity.badRequest().body(Map.of("message", "Only JPG, PNG and WEBP images are supported"));
         }
         try {
+            if (CloudinaryUploader.isEnabled()) {
+            vehicle.setImagePath(CloudinaryUploader.upload(image.getBytes()));
+            return ResponseEntity.ok(vehicleService.saveVehicle(vehicle));
+}
             Files.createDirectories(uploadDirectory);
             String extension = extensionFor(image.getContentType());
             String filename = UUID.randomUUID() + extension;
@@ -233,6 +237,9 @@ public class ShopController {
             throw new IllegalArgumentException("Only JPG, PNG and WEBP images are supported");
         }
         try {
+            if (CloudinaryUploader.isEnabled()) {
+            return CloudinaryUploader.upload(image.getBytes());
+}
             Files.createDirectories(uploadDirectory);
             String extension = switch (image.getContentType()) {
                 case "image/png" -> ".png";
