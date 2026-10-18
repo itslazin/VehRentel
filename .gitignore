@@ -31,3 +31,8 @@ images/vehicles/*
 *.sql.gz
 *.dump
 *.bak
+
+backend/aiven-truststore.p12
+*.backup
+
+backend/src/main/resources/application-local.properties

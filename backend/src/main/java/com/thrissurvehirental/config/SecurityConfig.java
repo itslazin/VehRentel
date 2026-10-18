@@ -62,18 +62,34 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/", "/index.html", "/css/**", "/js/**", "/pages/**", "/images/**", "/assets/**", "/uploads/**").permitAll()
+                .requestMatchers(HttpMethod.GET,
+                    "/shop/register", "/shop/login", "/shop/dashboard", "/shop/profile",
+                    "/shop/vehicles", "/shop/bookings", "/shop/customers", "/shop/reports",
+                    "/login", "/register", "/vehicles", "/shops", "/about", "/contact", "/help"
+                ).permitAll()
                 .requestMatchers("/h2-console/**").denyAll()
                 .requestMatchers("/api/auth/me").authenticated()
                 .requestMatchers("/api/auth/csrf", "/api/auth/customer/login", "/api/auth/shop/login",
                     "/api/auth/admin/login", "/api/auth/customer/register", "/api/auth/shop/register").permitAll()
                 .requestMatchers("/api/public/**", "/api/health").permitAll()
+
+                // Admin APIs
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PATCH, "/api/shop/bookings/*/status").hasAuthority("ROLE_SHOP_OWNER")
+
+                // Shop-owner APIs
                 .requestMatchers("/api/shop/**").hasRole("SHOP_OWNER")
+
+                // Customer APIs
                 .requestMatchers("/api/customer/**").hasRole("CUSTOMER")
-                .requestMatchers("/api/rentals").hasRole("ADMIN")
-                .anyRequest().permitAll()
-            )
+
+                // All-rentals endpoint is admin-only
+                .requestMatchers(HttpMethod.GET, "/api/rentals").hasRole("ADMIN")
+
+                // Public vehicle catalogue
+                .requestMatchers(HttpMethod.GET, "/api/vehicles").permitAll()
+
+                // Explicitly deny any unclassified request
+                .anyRequest().denyAll() )
             .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
             .formLogin(form -> form.disable())
             .logout(logout -> logout
