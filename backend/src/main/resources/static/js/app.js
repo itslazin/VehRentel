@@ -1,4 +1,4 @@
-const API = window.APP_API_BASE || 'http://localhost:8080/api';
+const API = window.APP_API_BASE || '/api';
 function csrfToken() {
   const cookie = document.cookie.split('; ').find(value => value.startsWith('XSRF-TOKEN='));
   return cookie ? decodeURIComponent(cookie.substring(10)) : '';
