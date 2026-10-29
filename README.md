@@ -2,14 +2,39 @@
 
 A new independent Spring Boot + MySQL vehicle rental project built around a Thrissur, Kerala rental platform.
 
-## Features
+🌟 Features
+
+👤 Customer Portal
+
 - Customer registration and login
-- Shop owner registration, approval flow, authenticated dashboard, profile, vehicle, booking, customer, and report pages
-- Platform admin login using a database-backed account
-- Public vehicle browsing
-- Booking flow with overlap prevention
-- Shop-level vehicle management
-- Dashboard screens and landing page styled to match the provided reference
+- Browse available vehicles
+- View vehicle details and rental charges
+- Select rental dates and book vehicles
+- Track booking status
+- Manage the rental and return process
+
+🏪 Shop Owner Portal
+
+- Shop-owner registration and login
+- Admin approval for new shop registrations
+- Manage shop profiles
+- Add and manage bikes, scooters, and cars
+- Update vehicle availability and details
+- View and manage customer bookings
+- Manage rental and return operations
+- Access customer information and reports
+
+🛡️ Platform Admin Portal
+
+- Separate administrator login page
+- View and manage registered rental shops
+- Approve, reject, suspend, or reactivate shop registrations
+- View vehicle and customer information
+- Monitor bookings and rentals
+- Access platform reports
+- Review and respond to complaints, where implemented
+
+The Admin Portal has a separate login interface and is not accessed through the regular Customer or Shop Owner portal pages. Administrative access must also be enforced by the backend.
 
 ## Run backend
 cd backend
